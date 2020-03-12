@@ -1,0 +1,17 @@
+*.pyc
+*.sw[op]
+.cache/
+*.*.log*
+*.log*
+*logs.txt
+.idea/
+.ipynb_checkpoints/
+*venv/
+*tmp/
+*coverage
+*migrations/
+*.sqlite3
+*.scssc
+*media/
+/.env
+*flask_session/

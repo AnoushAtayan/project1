@@ -1,0 +1,115 @@
+$color1: #214ce8;
+$color2: #052377;
+$color3: #2b8afc;
+$color4: #54e4f7;
+$color5: #aefdff;
+$color6: #dbe2f2;
+
+body {
+  overflow: hidden; /* Hide scrollbars */
+}
+
+a:focus, a:hover {
+  color: $color5 !important;
+}
+
+.bg-light-custom {
+  background-color: $color3 !important;
+}
+
+.navbar-brand img {
+  max-width: 100px;
+}
+
+.nav-link {
+  margin-left: 3rem;
+}
+
+.main-container {
+  margin: 0;
+  padding: 0;
+  height: 100vh;
+}
+
+.main-content {
+  height: 75vh;
+}
+
+.footer-social {
+  margin-top: 60px;
+}
+
+.footer-social ul li {
+  display: inline-block;
+  margin-right: 36px;
+}
+
+.footer-social ul li a i {
+  font-size: 24px;
+  color: black;
+}
+
+.footer-social ul li a i:hover {
+  color: $color1;
+}
+
+.copyright {
+  margin-top: 26px;
+  font-family: 'Lucida', serif;
+  font-size: 12px;
+  color: #232323;
+}
+
+#login_box {
+  margin-top: 220px;
+  height: 420px;
+}
+
+#sign_in_box {
+  margin-top: 80px;
+  height: 610px;
+  width: 500px;
+  background-color: $color6;
+}
+
+.form {
+  margin-top: 20px;
+  padding: 30px;
+}
+
+.text-header {
+  margin-bottom: 25px;
+  color: $color3;
+}
+
+.text-info:focus, .text-info:hover {
+  text-decoration: none;
+}
+
+.btn-info {
+  background: $color3;
+  border-color: $color3;
+  width: 150px;
+  border-radius: 20px;
+}
+
+.btn-info:focus, .btn-info:hover {
+  color: white;
+  border-color: $color3;
+  background: $color1;
+}
+
+.form-actions {
+  margin-top: 45px;
+  text-align: center;
+}
+
+#id_link_wrapper {
+  width: 100%;
+  margin: auto;
+}
+
+.text-info {
+    color: $color1 !important;
+}
+

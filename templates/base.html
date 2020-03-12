@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>You are reviewer {% block title %} {% endblock title %}</title>
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.9.0/css/all.css">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/custom.css') }}">
+</head>
+<body>
+<nav class="navbar navbar-expand-lg navbar-light bg-light-custom rounded">
+    <a class="navbar-brand" href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='img/logo.png') }}" alt="logo"></a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <div class="collapse navbar-collapse" id="navbarsExample09">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item">
+                <a class="nav-link" href="#">Books</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Reviews</a>
+            </li>
+            <li class="nav-item dropdown">
+                <a class="nav-link dropdown-toggle" id="id_profile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i></a>
+                <div class="dropdown-menu" aria-labelledby="id_profile">
+                    <a class="dropdown-item" href="#">Login</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{{ url_for('register')}}">Register</a>
+                </div>
+            </li>
+        </ul>
+        <form class="form-inline my-2 my-md-0">
+            <input class="form-control" type="text" placeholder="Search" aria-label="Search">
+        </form>
+    </div>
+</nav>
+
+<div class="main-container">
+    <div class="main-content">
+        <div class="row justify-content-center align-items-center">
+            {% block content %}
+
+            {% endblock content %}
+        </div>
+    </div>
+    <footer class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="col text-center">
+                    <div class="footer-social">
+                        <ul>
+                            <li><a href="https://www.facebook.com/profile.php?id=100004615263616"><i class="fab fa-facebook-f" aria-hidden="true"></i></a></li>
+                            <li><a href="https://www.linkedin.com/in/anoush-atayan-080b4b142/"><i class="fab fa-linkedin-in" aria-hidden="true"></i></a></li>
+                            <li><a href="https://github.com/AnoushAtayan"><i class="fab fa-github"></i></a></li>
+                        </ul>
+                    </div>
+                    <div class="copyright">Copyright &copy
+                        <script>document.write(new Date().getFullYear());</script>
+                        All rights reserved
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+</div>
+
+<script src="{{ url_for('static', filename='js/jquery.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/bootstrap.js') }}"></script>
+</body>
+</html>

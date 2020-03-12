@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% block title %} | Register{% endblock title %}
+
+{% block content %}
+    <div class="col-md-3">
+        <div class="col-md-12 user-auth-box" id="sign_in_box">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    <div class="notification is-danger">
+                        {{ messages[0] }}. Go to <a href="{{ url_for('login') }}">login page</a>.
+                    </div>
+                {% endif %}
+            {% endwith %}
+            <form class="form" id="sign_in_form" action="{{ url_for('register') }}" method="post">
+                <h3 class="text-center text-header">Sign Up</h3>
+                {{ form.csrf_token }}
+                <div class="form-group">
+                    <label for="username" class="text-info">Username:</label><br>
+                    <input class="form-control" type="text" autofocus="" autocomplete="off" name="username" required id="username">
+                </div>
+                <div class="form-group">
+                    <label for="email" class="text-info">Email Address:</label><br>
+                    <input class="form-control" type="email" name="email" required id="email">
+                </div>
+                <div class="form-group">
+                    <label for="password" class="text-info">Password:</label><br>
+                    <input class="form-control" type="password" name="password" autocomplete="new-password" required id="password">
+                </div>
+                <div class="form-group">
+                    <label for="confirm" class="text-info">Password Confirmation:</label><br>
+                    <input class="form-control" type="password" name="confirm" autocomplete="new-password" required id="confirm">
+                </div>
+                <div class="form-actions">
+                    <button type="submit" class="btn btn-info">Sign Up</button>
+                </div>
+                <div class="text-center" id="login_link">
+                    <br>
+                    <a href="{{ url_for('login') }}" class="text-info">Already have an account?</a>
+                </div>
+            </form>
+        </div>
+    </div>
+{% endblock content %}
