@@ -1,13 +1,13 @@
 import os
 
-from flask import Flask, session, render_template, request, redirect, url_for, flash
+from flask import Flask, render_template, request, redirect, url_for, flash, session
 from flask_session import Session
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
-from passlib.hash import sha256_crypt
 from werkzeug.security import generate_password_hash, check_password_hash
 
-from forms import RegistrationForm
+from forms import RegistrationForm, LoginForm
+from helpers import login_required
 
 app = Flask(__name__)
 
@@ -26,6 +26,7 @@ db = scoped_session(sessionmaker(bind=engine))
 
 
 @app.route("/")
+@login_required
 def index():
     return render_template('index.html')
 
@@ -36,21 +37,66 @@ def register():
         form = RegistrationForm(request.form)
         if request.method == 'POST' and form.validate():
             username = form.username.data
-            print(username)
+            user = db.execute("SELECT * FROM users WHERE username = :username",
+                              {'username': username}).fetchone()
+
+            if user:
+                flash('Username already exists.')
+                return redirect(url_for('register'))
+
             email = form.email.data
-            password = generate_password_hash(form.password.data, method='sha256')
-            # user = User.query.filter_by(username=username).first()
-            # if user:
-            #     flash('Email address already exists')
-            #     return redirect(url_for('signup'))
-            #
-            # new_user = User(username=username, email=email, password=password)
+            password = form.password.data
+            confirm = form.confirm.data
+
+            if password != confirm:
+                flash('Passwords do not match')
+                return redirect(url_for('register'))
+
+            password = generate_password_hash(password, method='sha256')
+            # Insert new object
+            db.execute(
+                "INSERT INTO users (username, email, password) "
+                "VALUES (:username, :email, :password)",
+                {'username': username, 'email': email, 'password': password})
+            # Commit changes to database
+            db.commit()
+
+            # Redirect user to login page
+            return redirect("/login")
 
         return render_template('register.html', form=form)
     except Exception as e:
         return str(e)
 
 
-@app.route("/login")
+@app.route("/login", methods=['GET', 'POST'])
 def login():
-    return render_template('login.html')
+    try:
+        form = LoginForm(request.form)
+        if request.method == 'POST' and form.validate():
+            username = form.username.data
+            user = db.execute("SELECT * FROM users WHERE username = :username",
+                              {'username': username}).fetchone()
+
+            if user is None or not check_password_hash(user['password'], form.password.data):
+                flash('Invalid username and/or password.')
+                return redirect(url_for('login'))
+
+            # Add to session
+            session["user_id"] = user['id']
+            session["username"] = user['username']
+
+            # Redirect user to home page
+            return redirect("/")
+
+        return render_template('login.html', form=form)
+    except Exception as e:
+        return str(e)
+
+
+@app.route("/logout")
+def logout():
+    session.clear()
+
+    # Redirect user to login form
+    return redirect("/")

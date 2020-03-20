@@ -25,9 +25,15 @@
             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" id="id_profile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i></a>
                 <div class="dropdown-menu" aria-labelledby="id_profile">
+                    {% if session.user_id %}
+                    <a class="dropdown-item" href="#">Hello, {{ session.username }}!</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="{{ url_for('logout')}}">Logout</a>
+                    {% else %}
                     <a class="dropdown-item" href="#">Login</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="{{ url_for('register')}}">Register</a>
+                    {% endif %}
                 </div>
             </li>
         </ul>
