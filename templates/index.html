@@ -19,8 +19,8 @@
         </li>
     </ul>
     <form class="form-inline my-2 my-lg-0" action="{{ url_for('search')}}" method="get">
-        <input class="form-control mr-sm-2" type="text" name="book" autofocus placeholder="ISBN, Title or Author">
-        <button class="btn btn-primary my-2 my-sm-0" type="submit">Search</button>
+        <input class="form-control mr-sm-2" type="text" name="book" id="book" autofocus placeholder="ISBN, Title or Author">
+        <button class="btn btn-primary my-2 my-sm-0" type="submit" id="submit_search">Search</button>
     </form>
 </div>
 {% endblock nav %}

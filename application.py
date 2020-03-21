@@ -104,4 +104,17 @@ def logout():
 
 @app.route("/search")
 def search():
-    pass
+    text = request.args.get('book')
+    query = f'%{text}%'
+
+    rows = db.execute("SELECT isbn, title, author, year FROM books WHERE \
+    isbn LIKE :query OR title LIKE :query OR author LIKE :query",
+                      {'query': query})
+
+    if rows.rowcount == 0:
+        flash('No book is found with that description!')
+        return render_template("results.html")
+
+    # Get all the results
+    books = rows.fetchall()
+    return render_template("results.html", books=books)

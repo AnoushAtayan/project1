@@ -94,4 +94,44 @@ a:focus, a:hover {
 .text-info {
   color: #214ce8 !important; }
 
+.no-found {
+  margin-top: 150px;
+  text-align: center; }
+
+.card {
+  width: 16rem !important;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  text-align: center;
+  background-color: #dbe2f2;
+  margin: 0 auto;
+  float: none;
+  height: 90%; }
+
+.results-container {
+  margin: 50px 0;
+  text-align: center; }
+
+.column {
+  float: left;
+  width: 25%;
+  padding: 0 10px; }
+
+/* Remove extra left and right margins, due to padding */
+.row {
+  margin: 0 -5px; }
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both; }
+
+/* Responsive columns */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px; } }
+
 /*# sourceMappingURL=custom.css.map */

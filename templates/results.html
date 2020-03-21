@@ -1,0 +1,36 @@
+{% extends "index.html" %}
+
+{% block title %} | Results{% endblock %}
+
+{% block content %}
+<div class="col-md-8">
+    {% with messages = get_flashed_messages() %}
+    {% if messages %}
+    <div class="no-found">
+        <h2>{{ messages[0] }}</h2>
+    </div>
+    {% else %}
+    <div class="results-container">
+        <h1 class="text-header">Results</h1>
+        <div class="row">
+            {% for book in books %}
+            <div class="col">
+                <div class="card mb-3">
+                    <div class="card-body">
+                        <h4 class="card-title text-primary">{{book['title']}}</h4>
+                        <h6 class="card-text">{{book['author']}}</h6>
+                        <h6 class="card-text">Year | {{book['year']}}</h6>
+                        <h6 class="card-text">ISBN | {{book['isbn']}}</h6>
+                    </div>
+                    <div class="card-footer">
+                        <a href="/book/{{book['isbn']}}" class="card-link">Go to book page</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    {% endif %}
+    {% endwith %}
+</div>
+{% endblock content %}
