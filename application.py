@@ -100,3 +100,8 @@ def logout():
 
     # Redirect user to login form
     return redirect("/")
+
+
+@app.route("/search")
+def search():
+    pass

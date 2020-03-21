@@ -10,37 +10,11 @@
 <body>
 <nav class="navbar navbar-expand-lg navbar-light bg-light-custom rounded">
     <a class="navbar-brand" href="{{ url_for('index') }}"><img src="{{ url_for('static', filename='img/logo.png') }}" alt="logo"></a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExample09" aria-controls="navbarsExample09" aria-expanded="false" aria-label="Toggle navigation">
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#custom_navbar" aria-controls="custom_navbar" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
-
-    <div class="collapse navbar-collapse" id="navbarsExample09">
-        <ul class="navbar-nav mr-auto">
-            <li class="nav-item">
-                <a class="nav-link" href="#">Books</a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="#">Reviews</a>
-            </li>
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" id="id_profile" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fa fa-user"></i></a>
-                <div class="dropdown-menu" aria-labelledby="id_profile">
-                    {% if session.user_id %}
-                    <a class="dropdown-item" href="#">Hello, {{ session.username }}!</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="{{ url_for('logout')}}">Logout</a>
-                    {% else %}
-                    <a class="dropdown-item" href="#">Login</a>
-                    <div class="dropdown-divider"></div>
-                    <a class="dropdown-item" href="{{ url_for('register')}}">Register</a>
-                    {% endif %}
-                </div>
-            </li>
-        </ul>
-        <form class="form-inline my-2 my-md-0">
-            <input class="form-control" type="text" placeholder="Search" aria-label="Search">
-        </form>
-    </div>
+    {% block nav %}
+    {% endblock nav %}
 </nav>
 
 <div class="main-container">

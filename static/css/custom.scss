@@ -10,15 +10,19 @@ body {
 }
 
 a:focus, a:hover {
-  color: $color5 !important;
+  color: $color3 !important;
 }
 
 .bg-light-custom {
-  background-color: $color3 !important;
+  background-color: $color6 !important;
 }
 
 .navbar-brand img {
   max-width: 100px;
+}
+
+.navbar-right {
+  text-align: right;
 }
 
 .nav-link {

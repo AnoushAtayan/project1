@@ -3,13 +3,16 @@ body {
   /* Hide scrollbars */ }
 
 a:focus, a:hover {
-  color: #aefdff !important; }
+  color: #2b8afc !important; }
 
 .bg-light-custom {
-  background-color: #2b8afc !important; }
+  background-color: #dbe2f2 !important; }
 
 .navbar-brand img {
   max-width: 100px; }
+
+.navbar-right {
+  text-align: right; }
 
 .nav-link {
   margin-left: 3rem; }
