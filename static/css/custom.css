@@ -23,7 +23,9 @@ a:focus, a:hover {
   height: 100vh; }
 
 .main-content {
-  height: 75vh; }
+  height: 80vh;
+  overflow-y: auto;
+  overflow-x: hidden; }
 
 .footer-social {
   margin-top: 60px; }
@@ -40,7 +42,7 @@ a:focus, a:hover {
   color: #214ce8; }
 
 .copyright {
-  margin-top: 26px;
+  margin-top: 18px;
   font-family: 'Lucida', serif;
   font-size: 12px;
   color: #232323; }
@@ -109,7 +111,7 @@ a:focus, a:hover {
   height: 90%; }
 
 .results-container {
-  margin: 50px 0;
+  margin: 30px 0;
   text-align: center; }
 
 .column {
