@@ -1,0 +1,49 @@
+{% extends "index.html" %}
+
+{% block title %} | {{ book_data['Title'] }}{% endblock %}
+
+{% block content %}
+<div class="col-md-6">
+    <div class="row book-container">
+        <div class="col-sm-4 text-right">
+            <h1 class="text-header">{{ book_data['title'] }}</h1>
+            <h5><span class="text-info">Author:</span> {{ book_data['author'] }}</h5>
+            <h5><span class="text-info">Published:</span> {{ book_data['year'] }}</h5>
+            <h5><span class="text-info">ISBN-10:</span> {{ book_data['isbn' ]}}</h5>
+        </div>
+        <div class="col-sm-4">
+            <img src="http://covers.openlibrary.org/b/isbn/{{ book_data['isbn'] }}-M.jpg" width="180px" height="200px">
+        </div>
+        <div class="col-sm-4 text-left">
+            <h1 class="text-header">good<b>reads</b></h1>
+            <h5><span class="text-info">Nº of Ratings:</span> {{ work_ratings_count }}</h5>
+            <h5><span class="text-info">Average Rating:</span> {{ average_rating }}</h5>
+            <h5>
+                <a href="https://www.goodreads.com/search?q={{ book_data['title'] }}">Goodreads page</a>
+            </h5>
+        </div>
+    </div>
+
+    <!-- REVIEW FORM -->
+    <form method="POST">
+        <div class="form-group">
+            <div class="rating">
+                <input type="radio" id="star5" name="rating" value="5"/><label for="star5" title="Excellent">5 stars</label>
+                <input type="radio" id="star4" name="rating" value="4"/><label for="star4" title="Good">4 stars</label>
+                <input type="radio" id="star3" name="rating" value="3"/><label for="star3" title="OK">3 stars</label>
+                <input type="radio" id="star2" name="rating" value="2"/><label for="star2" title="Poor">2 stars</label>
+                <input type="radio" id="star1" name="rating" value="1"/><label for="star1" title="Very Bad">1 star</label>
+            </div>
+        </div>
+        <div class="form-group">
+            <textarea class="form-control" rows="6" placeholder="Leave your review here!" name="review"></textarea>
+        </div>
+        <button type="submit" class="btn btn-info">Submit</button>
+    </form>
+</div>
+{% endblock content %}
+
+
+<!--            <div class="col-xs-12 right-align image-wrapper">-->
+<!--                <img src="{{ url_for('static', filename='img/blankUser.gif') }}">-->
+<!--            </div>-->

@@ -1,5 +1,6 @@
 import os
 
+import requests
 from flask import Flask, render_template, request, redirect, url_for, flash, session
 from flask_session import Session
 from sqlalchemy import create_engine
@@ -103,6 +104,7 @@ def logout():
 
 
 @app.route("/search")
+@login_required
 def search():
     text = request.args.get('book')
     query = f'%{text}%'
@@ -118,3 +120,30 @@ def search():
     # Get all the results
     books = rows.fetchall()
     return render_template("results.html", books=books)
+
+
+@app.route("/book/<isbn>", methods=['GET', 'POST'])
+@login_required
+def book(isbn):
+    if request.method == 'GET':
+        row = db.execute("SELECT isbn, title, author, year FROM books WHERE \
+                                isbn = :isbn",
+                         {'isbn': isbn})
+
+        book_data = row.fetchone()
+
+        key = os.getenv("GOODREADS_KEY")
+
+        # Query the api with key and ISBN as parameters
+        query = requests.get("https://www.goodreads.com/book/review_counts.json",
+                             params={"key": key, "isbns": isbn})
+
+        # Convert the response to JSON
+        response = query.json()['books'][0]
+
+        # "Clean" the JSON before passing it to the bookInfo list
+        return render_template('book.html',
+                               book_data=book_data,
+                               average_rating=response['average_rating'],
+                               work_ratings_count=response['work_ratings_count']
+                               )
