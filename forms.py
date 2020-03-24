@@ -1,4 +1,4 @@
-from wtforms import Form, StringField, validators, PasswordField
+from wtforms import Form, StringField, validators, PasswordField, IntegerField
 
 
 class RegistrationForm(Form):
@@ -11,3 +11,8 @@ class RegistrationForm(Form):
 class LoginForm(Form):
     username = StringField('Username', [validators.length(min=4, max=20)])
     password = PasswordField('Password')
+
+
+class ReviewForm(Form):
+    rating = IntegerField('Rating')
+    review = StringField('Review')

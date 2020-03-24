@@ -10,15 +10,19 @@ body {
 }
 
 a:focus, a:hover {
-  color: $color5 !important;
+  color: $color3 !important;
 }
 
 .bg-light-custom {
-  background-color: $color3 !important;
+  background-color: $color6 !important;
 }
 
 .navbar-brand img {
   max-width: 100px;
+}
+
+.navbar-right {
+  text-align: right;
 }
 
 .nav-link {
@@ -32,7 +36,9 @@ a:focus, a:hover {
 }
 
 .main-content {
-  height: 75vh;
+  height: 80vh;
+  overflow-y: auto;
+  overflow-x: hidden;
 }
 
 .footer-social {
@@ -54,7 +60,7 @@ a:focus, a:hover {
 }
 
 .copyright {
-  margin-top: 26px;
+  margin-top: 18px;
   font-family: 'Lucida', serif;
   font-size: 12px;
   color: #232323;
@@ -93,14 +99,14 @@ a:focus, a:hover {
   text-decoration: none;
 }
 
-.btn-info {
+.btn-custom {
   background: $color3;
   border-color: $color3;
   width: 150px;
   border-radius: 20px;
 }
 
-.btn-info:focus, .btn-info:hover {
+.btn-custom:focus, .btn-custom:hover {
   color: white;
   border-color: $color3;
   background: $color1;
@@ -117,6 +123,182 @@ a:focus, a:hover {
 }
 
 .text-info {
-    color: $color1 !important;
+  color: $color1 !important;
 }
 
+.no-found {
+   margin-top: 150px;
+   text-align: center;
+}
+
+.card-custom {
+  width: 16rem !important;
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+  padding: 16px;
+  text-align: center;
+  background-color: $color6;
+  margin: 0 auto;
+  float: none;
+  height: 90%;
+}
+
+.results-container {
+  margin: 30px 0;
+  text-align: center;
+}
+
+.column {
+  float: left;
+  width: 25%;
+  padding: 0 10px;
+}
+
+/* Remove extra left and right margins, due to padding */
+.row {margin: 0 -5px;}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.book-container {
+  margin: 70px 20px;
+  text-align: center;
+}
+
+.book-container h1 {
+  font-size: 50px;
+  line-height: 1.1;
+  font-weight: 400;
+}
+
+.rating {
+  float:left;
+}
+
+/* :not(:checked) is a filter, so that browsers that don’t support :checked don’t
+  follow these rules. Every browser that supports :checked also supports :not(), so
+  it doesn’t make the test unnecessarily selective */
+.rating:not(:checked) > input {
+  position:absolute;
+  top:-9999px;
+  clip:rect(0,0,0,0);
+}
+
+.rating:not(:checked) > label {
+  float:right;
+  width:1em;
+  /* padding:0 .1em; */
+  overflow:hidden;
+  white-space:nowrap;
+  cursor:pointer;
+  font-size:300%;
+  /* line-height:1.2; */
+  color:#ddd;
+}
+
+.rating:not(:checked) > label:before {
+  content: '★ ';
+}
+
+.rating > input:checked ~ label {
+  color: $color3;
+}
+
+.rating:not(:checked) > label:hover,
+.rating:not(:checked) > label:hover ~ label {
+  color: $color3;
+}
+
+.rating > input:checked + label:hover,
+.rating > input:checked + label:hover ~ label,
+.rating > input:checked ~ label:hover,
+.rating > input:checked ~ label:hover ~ label,
+.rating > label:hover ~ input:checked ~ label {
+  color: $color3;
+}
+
+.rating > label:active {
+  position:relative;
+  top:2px;
+  left:2px;
+}
+
+.image-wrapper img {
+  border: 0px solid #c0c0c0;
+  border-radius: 50%;
+}
+
+#submit_review {
+  display: none;
+}
+
+.margin-bottom-30 {
+  text-align: center;
+  margin: 0 auto;
+  float: none;
+  margin-bottom: 30px;
+}
+
+/* Portlet */
+.portlet {
+  background: $color6;
+  padding: 20px;
+}
+
+.portlet-body {
+ color: #af9999;
+}
+
+.portlet-title {
+  padding: 0;
+  min-height: 40px;
+  border-bottom: 1.5px solid #fff;
+  margin-bottom: 18px;
+}
+
+.caption {
+  float: left;
+  display: inline-block;
+  font-size: 18px;
+  line-height: 18px;
+}
+
+.caption i {
+  color: #777;
+  font-size: 15px;
+  font-weight: 300;
+  margin-top: 3px;
+}
+
+.caption-subject {
+  color: #666;
+  font-size: 20px;
+  font-weight: 570;
+}
+
+.caption-helper {
+  padding: 0;
+  margin: 0;
+  line-height: 13px;
+  color: #9eacb4;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.user-rating {
+  color: #af9999;
+  float: right;
+  display: inline-block;
+}
+
+/* Responsive columns */
+@media screen and (max-width: 600px) {
+  .column {
+    width: 100%;
+    display: block;
+    margin-bottom: 20px;
+  }
+}
