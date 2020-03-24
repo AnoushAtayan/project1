@@ -131,7 +131,7 @@ a:focus, a:hover {
    text-align: center;
 }
 
-.card {
+.card-custom {
   width: 16rem !important;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
   padding: 16px;
@@ -227,12 +227,71 @@ a:focus, a:hover {
 }
 
 .image-wrapper img {
-    border: 0px solid #c0c0c0;
-    border-radius: 50%;
+  border: 0px solid #c0c0c0;
+  border-radius: 50%;
 }
 
 #submit_review {
   display: none;
+}
+
+.margin-bottom-30 {
+  text-align: center;
+  margin: 0 auto;
+  float: none;
+  margin-bottom: 30px;
+}
+
+/* Portlet */
+.portlet {
+  background: $color6;
+  padding: 20px;
+}
+
+.portlet-body {
+ color: #af9999;
+}
+
+.portlet-title {
+  padding: 0;
+  min-height: 40px;
+  border-bottom: 1.5px solid #fff;
+  margin-bottom: 18px;
+}
+
+.caption {
+  float: left;
+  display: inline-block;
+  font-size: 18px;
+  line-height: 18px;
+}
+
+.caption i {
+  color: #777;
+  font-size: 15px;
+  font-weight: 300;
+  margin-top: 3px;
+}
+
+.caption-subject {
+  color: #666;
+  font-size: 20px;
+  font-weight: 570;
+}
+
+.caption-helper {
+  padding: 0;
+  margin: 0;
+  line-height: 13px;
+  color: #9eacb4;
+  font-size: 13px;
+  font-weight: 400;
+}
+
+.user-rating {
+  color: #af9999;
+  float: right;
+  display: inline-block;
 }
 
 /* Responsive columns */

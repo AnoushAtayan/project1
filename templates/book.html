@@ -9,7 +9,7 @@
             <h1 class="text-header">{{ book_data['title'] }}</h1>
             <h5><span class="text-info">Author:</span> {{ book_data['author'] }}</h5>
             <h5><span class="text-info">Published:</span> {{ book_data['year'] }}</h5>
-            <h5><span class="text-info">ISBN-10:</span> {{ book_data['isbn' ]}}</h5>
+            <h5><span class="text-info">ISBN-10:</span> {{ book_data['isbn'] }}</h5>
         </div>
         <div class="col-sm-4">
             <img src="http://covers.openlibrary.org/b/isbn/{{ book_data['isbn'] }}-M.jpg" width="180px" height="200px">
@@ -25,7 +25,9 @@
     </div>
 
     <!-- REVIEW FORM -->
+    {% if not has_review %}
     <form method="POST">
+        {{ form.csrf_token }}
         <div class="form-group">
             <div class="rating">
                 <input type="radio" id="star5" name="rating" value="5"/><label for="star5" title="Excellent">5 stars</label>
@@ -40,10 +42,32 @@
         </div>
         <button type="submit" class="btn btn-custom" id="submit_review">Submit</button>
     </form>
+    {% endif %}
+    <div class="row">
+        {% for review in reviews %}
+        <div class="col-md-6 margin-bottom-30">
+            <div class="portlet">
+                <div class="portlet-title">
+                    <div class="caption">
+                        <span class="caption-subject text-uppercase">{{ review['username'] }}</span>
+                        <span class="caption-helper">{{ review['date'] }}</span>
+                    </div>
+                    <div class="user-rating">
+                        <h5>
+                            {% for n in range(review['rating']) %}
+                            <span><i class="far fa-star"></i></span>
+                            {% endfor %}
+                        </h5>
+                    </div>
+                </div>
+                <div class="portlet-body">
+                    <br>
+                    <h4>{{ review['review'] }}</h4>
+                </div>
+            </div>
+        </div>
+        {% endfor%}
+    </div>
 </div>
 {% endblock content %}
 
-
-<!--            <div class="col-xs-12 right-align image-wrapper">-->
-<!--                <img src="{{ url_for('static', filename='img/blankUser.gif') }}">-->
-<!--            </div>-->
