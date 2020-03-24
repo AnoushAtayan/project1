@@ -1,7 +1,7 @@
 import os
 
 import requests
-from flask import Flask, render_template, request, redirect, url_for, flash, session
+from flask import Flask, render_template, request, redirect, url_for, flash, session, jsonify
 from flask_session import Session
 from sqlalchemy import create_engine
 from sqlalchemy.orm import scoped_session, sessionmaker
@@ -185,3 +185,31 @@ def book(isbn):
                                )
     except Exception as e:
         return str(e)
+
+
+@app.route("/api/<isbn>")
+@login_required
+def api_call(isbn):
+    """
+    Return a JSON response containing the book’s title, author, publication date,
+    ISBN number, review count, and average score.
+    """
+    row = db.execute("SELECT title, author, year, isbn, \
+                    COUNT(reviews.id) as review_count, \
+                    AVG(reviews.rating) as average_score \
+                    FROM books \
+                    INNER JOIN reviews \
+                    ON books.id = reviews.book_id \
+                    WHERE isbn = :isbn \
+                    GROUP BY title, author, year, isbn",
+                     {"isbn": isbn})
+
+    if row.rowcount == 0:
+        return jsonify({"Error": "Invalid book ISBN"}), 422
+
+    # Convert to dict
+    result = dict(row.fetchone().items())
+
+    result['average_score'] = format(result['average_score'], '.2f')
+
+    return jsonify(result)
