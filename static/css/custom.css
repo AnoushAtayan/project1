@@ -75,13 +75,13 @@ a:focus, a:hover {
 .text-info:focus, .text-info:hover {
   text-decoration: none; }
 
-.btn-info {
+.btn-custom {
   background: #2b8afc;
   border-color: #2b8afc;
   width: 150px;
   border-radius: 20px; }
 
-.btn-info:focus, .btn-info:hover {
+.btn-custom:focus, .btn-custom:hover {
   color: white;
   border-color: #2b8afc;
   background: #214ce8; }
@@ -186,6 +186,9 @@ a:focus, a:hover {
 .image-wrapper img {
   border: 0px solid #c0c0c0;
   border-radius: 50%; }
+
+#submit_review {
+  display: none; }
 
 /* Responsive columns */
 @media screen and (max-width: 600px) {
